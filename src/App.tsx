@@ -38,6 +38,7 @@ function App() {
                     mode="horizontal"
                     defaultSelectedKeys={['1']}
                     onClick={({ domEvent: { target } }) =>
+                        // @ts-ignore
                         setState(target.innerText)
                     }
                     items={['Sobre', 'Títulos', 'contato'].map(
