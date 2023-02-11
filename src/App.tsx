@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Breadcrumb, Layout, Menu, theme, Typography } from 'antd';
 import logo from './assets/logo.svg';
+import About from './components/About';
 
 const { Header, Content, Footer } = Layout;
+const { Link } = Typography;
 
-const App: React.FC = () => {
-    const [state, setState] = useState('Home');
+function App() {
+    const [state, setState] = useState('Sobre');
     const {
         token: { colorBgContainer },
     } = theme.useToken();
@@ -38,16 +40,12 @@ const App: React.FC = () => {
                     onClick={({ domEvent: { target } }) =>
                         setState(target.innerText)
                     }
-                    items={[
-                        'Home',
-                        'Sobre',
-                        'Histórico',
-                        'Títulos',
-                        'contato',
-                    ].map((item, index) => ({
-                        key: index + 1,
-                        label: `${item}`,
-                    }))}
+                    items={['Sobre', 'Títulos', 'contato'].map(
+                        (item, index) => ({
+                            key: index + 1,
+                            label: `${item}`,
+                        })
+                    )}
                 />
             </Header>
             <Content style={{ padding: '0 50px' }}>
@@ -55,19 +53,24 @@ const App: React.FC = () => {
                     <Breadcrumb.Item>{state}</Breadcrumb.Item>
                 </Breadcrumb>
                 <div
-                    className="site-layout-content"
-                    style={{ background: colorBgContainer }}
+                    style={{
+                        background: colorBgContainer,
+                    }}
                 >
-                    Content
+                    {state === 'Sobre' ? <About /> : false}
                 </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>
-                <a href="https://wa.me/5568981231484" target="_blank">
+                <Link
+                    href="https://wa.me/5568981231484"
+                    target="_blank"
+                    rel="noreferrer"
+                >
                     ©2023 Created by igson Felix
-                </a>
+                </Link>
             </Footer>
         </Layout>
     );
-};
+}
 
 export default App;
