@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Breadcrumb, Layout, Menu, theme, Typography } from 'antd';
 import logo from './assets/logo.svg';
-import About from './components/About';
+import About from './components/about/About';
 
 const { Header, Content, Footer } = Layout;
 const { Link } = Typography;
@@ -49,17 +49,11 @@ function App() {
                     )}
                 />
             </Header>
-            <Content style={{ padding: '0 50px' }}>
+            <Content className="app-content">
                 <Breadcrumb style={{ margin: '16px 0' }}>
                     <Breadcrumb.Item>{state}</Breadcrumb.Item>
                 </Breadcrumb>
-                <div
-                    style={{
-                        background: colorBgContainer,
-                    }}
-                >
-                    {state === 'Sobre' ? <About /> : false}
-                </div>
+                <div>{state === 'Sobre' ? <About /> : false}</div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>
                 <Link

@@ -1,58 +1,34 @@
 import { Carousel, Typography } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
-import img1 from '../assets/img-about/1.jpg';
-import img2 from '../assets/img-about/2.jpg';
-import img3 from '../assets/img-about/3.jpg';
-import img4 from '../assets/img-about/4.jpg';
+import './about.css';
+import img1 from '../../assets/img-about/1.jpg';
+import img2 from '../../assets/img-about/2.jpg';
+import img3 from '../../assets/img-about/3.jpg';
+import img4 from '../../assets/img-about/4.jpg';
 
 const imgs = [img1, img2, img3, img4];
 const { Title, Paragraph } = Typography;
 
 function About() {
     return (
-        <div
-            style={{
-                padding: '50px',
-                display: 'flex',
-                flexDirection: 'column',
-            }}
-        >
-            <Title
-                level={2}
-                style={{ textAlign: 'center', lineHeight: '50px' }}
-            >
+        <div className="about-main-container">
+            <Title level={2} className="about-title">
                 José Roberto Viana
             </Title>
             <Carousel autoplay easing="linear" dots={false}>
                 {imgs.map((img, i) => (
                     <div key={uuidv4()}>
-                        <picture
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                            }}
-                        >
+                        <picture className="about-picture-carousel">
                             <img
                                 src={img}
                                 alt={`img ${i + 1}`}
-                                style={{
-                                    maxWidth: '400px',
-                                    maxHeight: '400px',
-                                }}
+                                className="about-img-carousel"
                             />
                         </picture>
                     </div>
                 ))}
             </Carousel>
-            <Paragraph
-                style={{
-                    textIndent: '4rem',
-                    textAlign: 'justify',
-                    alignSelf: 'center',
-                    fontSize: '1.5rem',
-                    maxWidth: '600px',
-                }}
-            >
+            <Paragraph className="about-paragraph">
                 No ano 2000 na cidade de Xapuri, interior do estado do Acre,
                 José Roberto iniciou no jiu jitsu com 17 anos, fazendo parte de
                 um projeto social onde tinha o sonho de ser competidor. Mas foi
@@ -60,15 +36,7 @@ function About() {
                 fazendo com que ele conheça quase toda a Europa e se tornando um
                 dos maiores medalhistas do estado do Acre.
             </Paragraph>
-            <Paragraph
-                style={{
-                    textIndent: '4rem',
-                    textAlign: 'justify',
-                    alignSelf: 'center',
-                    fontSize: '1.5rem',
-                    maxWidth: '600px',
-                }}
-            >
+            <Paragraph className="about-paragraph">
                 Em 2014, Jose Roberto inaugurou sua academia de jiu jitsu na
                 capital acreana com ajuda de amigos que fez ao longo do tempo,
                 ganhando muito mais experiencia para se tornar o profissional

@@ -14,5 +14,12 @@ body {
   margin: 0;
 }
 
+.app-content {
+  padding: 0 50px
+}
 
-
+@media only screen and (max-width: 600px) {
+  .app-content {
+    padding: 0 10px;
+  }
+}
