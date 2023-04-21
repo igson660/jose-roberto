@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Breadcrumb, Layout, Menu, theme, Typography } from 'antd';
-import logo from './assets/logo.svg';
+import logo from './assets/logov2.png';
 import About from './components/about/About';
+import { Titulos } from './components/titulos/Titulos';
 
 const { Header, Content, Footer } = Layout;
 const { Link } = Typography;
@@ -18,18 +19,18 @@ function App() {
             <Header>
                 <div
                     style={{
-                        background: colorBgContainer,
-                        width: '50px',
-                        height: '65px',
+                        width: '55px',
+                        height: '55px',
                         float: 'left',
                         marginRight: '60px',
+                        marginTop: "4px",
                     }}
                 >
                     <picture>
                         <img
                             src={logo}
                             alt="Logo Jose Roberto"
-                            style={{ width: '50px', height: '65px' }}
+                            style={{ width: '100%', height: '100%' }}
                         />
                     </picture>
                 </div>
@@ -42,7 +43,7 @@ function App() {
                         // @ts-ignore
                         setState(target.innerText)
                     }
-                    items={['Sobre', 'Títulos', 'contato'].map(
+                    items={['Sobre', 'Títulos', 'Contato'].map(
                         (item, index) => ({
                             key: index + 1,
                             label: `${item}`,
@@ -51,10 +52,10 @@ function App() {
                 />
             </Header>
             <Content className="app-content">
-                <Breadcrumb style={{ margin: '16px 0' }}>
+                {/* <Breadcrumb style={{ margin: '16px 0' }}>
                     <Breadcrumb.Item>{state}</Breadcrumb.Item>
-                </Breadcrumb>
-                <div>{state === 'Sobre' ? <About /> : false}</div>
+                </Breadcrumb> */}
+                <div>{state === 'Sobre' ? <About /> : <Titulos/>}</div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>
                 <Link

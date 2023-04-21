@@ -1,0 +1,49 @@
+body {
+    background-color: red;
+}
+
+.titulos-container {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    gap: 3;
+}
+
+.titulo-page{
+    font-size: 100px;
+    text-align: center;
+}
+
+.circle {
+    margin: auto;
+    margin-bottom: 2vh;
+    min-width: 150px;
+    min-height: 150px;
+    background-color: aliceblue;
+    border-radius: 600px;
+    border: 15px groove #333;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulos {
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    text-align: center;
+    width: 400px;
+}
+
+.titulo{
+    font-size: 12pt;
+    font-weight: 900;
+    margin-bottom: 2vh;
+}
+
+.infos{
+    font-size: 10pt;
+    font-weight: 700;
+    line-height: 1.2rem;
+}
+
