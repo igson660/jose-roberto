@@ -1,0 +1,93 @@
+/* Estilo para o título principal */
+.ant-typography h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Estilo para o texto de introdução */
+.ant-typography p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Estilo para a lista de contatos */
+ul {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo para o título dos horários */
+.ant-typography h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo para o conteúdo do Carousel */
+.slick-slide {
+    text-align: center;
+    height: 400px;
+    line-height: 400px;
+    overflow: hidden;
+}
+
+.slick-slide img {
+    margin: 0 auto;
+}
+
+/* Estilo para o botão do Carousel */
+.slick-prev,
+.slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-size: 50px;
+    line-height: 50px;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    content: '';
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #fff;
+}
+
+.slick-prev:before {
+    content: '\2190';
+}
+
+.slick-next:before {
+    content: '\2192';
+}
+
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before {
+    color: #aaa;
+}
