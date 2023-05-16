@@ -3,6 +3,7 @@ import { Breadcrumb, Layout, Menu, theme, Typography } from 'antd';
 import logo from './assets/logov2.png';
 import About from './components/about/About';
 import { Titulos } from './components/titulos/Titulos';
+import Contatos from './components/contato/Contato';
 
 const { Header, Content, Footer } = Layout;
 const { Link } = Typography;
@@ -55,7 +56,7 @@ function App() {
                 {/* <Breadcrumb style={{ margin: '16px 0' }}>
                     <Breadcrumb.Item>{state}</Breadcrumb.Item>
                 </Breadcrumb> */}
-                <div>{state === 'Sobre' ? <About /> : <Titulos/>}</div>
+                <div>{state === 'Sobre' ? <About /> : state === 'Títulos' ? <Titulos/> : <Contatos/>}</div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>
                 <Link
@@ -63,7 +64,7 @@ function App() {
                     target="_blank"
                     rel="noreferrer"
                 >
-                    ©2023 Created by igson Felix
+                    ©2023 Created by igson Felix  & Andreysson Araujo
                 </Link>
             </Footer>
         </Layout>

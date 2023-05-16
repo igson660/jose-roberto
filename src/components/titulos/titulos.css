@@ -10,7 +10,9 @@ body {
 }
 
 .titulo-page{
-    font-size: 100px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 1rem;
+    font-size: 70px;
     text-align: center;
 }
 
