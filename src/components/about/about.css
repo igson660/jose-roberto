@@ -15,10 +15,20 @@
 }
 
 .about-img-carousel {
+  width: 400;
+  height: 500px; /* Defina a altura desejada para as imagens */
+  object-fit: cover;
+}
+
+
+
+
+/*
+.about-img-carousel {
   max-width: 400px;
   max-height: 400px;
 }
-
+*/
 .about-paragraph {
   text-indent: 4rem;
   text-align: justify;
