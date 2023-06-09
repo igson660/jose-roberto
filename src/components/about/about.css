@@ -18,9 +18,8 @@
   width: 400;
   height: 500px; /* Defina a altura desejada para as imagens */
   object-fit: cover;
+  border-radius: 20px;
 }
-
-
 
 
 /*
