@@ -10,9 +10,10 @@ body {
 }
 
 .titulo-page{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
     margin-top: 1rem;
-    font-size: 70px;
+    font-size: 3rem;
     text-align: center;
 }
 

@@ -25,10 +25,11 @@ function About() {
                                 className="about-img-carousel"
                             />
                         </picture>
-                        <h1 className='about-h1-description'>Test</h1>
-                    </div>
+                    </div>                      
                 ))}
             </Carousel>
+            <br />
+            <br />
             <Paragraph className="about-paragraph">
                 No ano 2000 na cidade de Xapuri, interior do estado do Acre,
                 José Roberto iniciou no jiu jitsu com 17 anos, fazendo parte de

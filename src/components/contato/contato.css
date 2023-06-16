@@ -1,4 +1,8 @@
-/* Estilo para o título principal */
+.contato-page{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
 .ant-typography h2 {
     font-size: 2rem;
     margin-bottom: 1rem;

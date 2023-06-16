@@ -10,13 +10,15 @@ const { Title, Paragraph } = Typography;
 function Contatos() {
     return (
         <div>
-            <Title level={2}>Contatos</Title>
+            <h1 className='contato-page'>Contatos</h1>
             <Paragraph>
                 Entre em contato comigo por meio dos seguintes canais:
             </Paragraph>
             <ul>
                 <li>Telefone: (68) 99202-4942</li>
+                <br />
                 <li>Local: Estrada Dias Martins, N°1397 Jardim Alan, Terceiro Andar</li>
+                <br />
             </ul>
             <Title level={3}>Nossos Horarios</Title>
             <Carousel>
