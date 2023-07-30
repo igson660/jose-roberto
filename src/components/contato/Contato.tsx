@@ -1,9 +1,10 @@
-import { Typography, Table, Button } from 'antd';
+import { Typography, Table, Button, Collapse } from 'antd'; // Importe o componente Collapse
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react'; // Importe o useState para gerenciar o estado
-import "./contato.css"
+import './contato.css';
 
 const { Title, Paragraph } = Typography;
+const { Panel } = Collapse; // Desestruture o componente Panel do Collapse
 
 function Contatos() {
     const horariosDataSource = [
@@ -21,7 +22,7 @@ function Contatos() {
         },
         {
             key: uuidv4(),
-            categoria: "Competição",
+            categoria: 'Competição',
             diaSemana: 'Ter e Qui',
             horario: '12h00',
         },
@@ -93,7 +94,7 @@ function Contatos() {
         },
     ];
 
-    const horariosNoiteDataSource = horariosDataSource.filter(item => {
+    const horariosNoiteDataSource = horariosDataSource.filter((item) => {
         const horarioParts = item.horario.split(':');
         const hora = parseInt(horarioParts[0], 10);
         return hora >= 18;
@@ -107,27 +108,47 @@ function Contatos() {
 
     return (
         <div>
-            <h1 className='contato-page'>Contatos</h1>
+            <h1 className="contato-page">Contatos</h1>
             <Paragraph>
                 Entre em contato comigo por meio dos seguintes canais:
             </Paragraph>
             <ul>
                 <li>Telefone: (68) 99202-4942</li>
                 <br />
-                <li>Local: Estrada Dias Martins, N°1397 Jardim Alan, Terceiro Andar</li>
+                <li>
+                    Local: Estrada Dias Martins, N°1397 Jardim Alan, Terceiro
+                    Andar
+                </li>
                 <br />
             </ul>
             <Title level={3}>Nossos Horários</Title>
             <Button onClick={alternarTabela} style={{ marginBottom: 16 }}>
-                {mostrarTabelaNoite ? "Mostrar Horários do Dia" : "Mostrar Horários da Noite"}
+                {mostrarTabelaNoite
+                    ? 'Mostrar Horários do Dia'
+                    : 'Mostrar Horários da Noite'}
             </Button>
             {mostrarTabelaNoite ? (
                 <>
                     <Title level={4}>Turno da Noite</Title>
-                    <Table dataSource={horariosNoiteDataSource} columns={horariosColumns} pagination={false} />
+                    <Collapse defaultActiveKey={['1']}>
+                        {/* Use o componente Collapse.Panel para cada horário */}
+                        {horariosNoiteDataSource.map((item) => (
+                            <Panel header={item.categoria} key={item.key}>
+                                <Table
+                                    dataSource={[item]}
+                                    columns={horariosColumns}
+                                    pagination={false}
+                                />
+                            </Panel>
+                        ))}
+                    </Collapse>
                 </>
             ) : (
-                <Table dataSource={horariosDataSource} columns={horariosColumns} pagination={false} />
+                <Table
+                    dataSource={horariosDataSource}
+                    columns={horariosColumns}
+                    pagination={false}
+                />
             )}
         </div>
     );
