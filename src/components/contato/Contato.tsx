@@ -94,16 +94,18 @@ function Contatos() {
         },
     ];
 
-    const horariosNoiteDataSource = horariosDataSource.filter((item) => {
-        const horarioParts = item.horario.split(':');
-        const hora = parseInt(horarioParts[0], 10);
-        return hora >= 18;
-    });
+    const categorias = [
+        ...new Set(horariosDataSource.map((item) => item.categoria)),
+    ];
+    const [horariosPorCategoria, setHorariosPorCategoria] = useState<{
+        [key: string]: boolean;
+    }>({});
 
-    const [mostrarTabelaNoite, setMostrarTabelaNoite] = useState(false);
-
-    const alternarTabela = () => {
-        setMostrarTabelaNoite(!mostrarTabelaNoite);
+    const onCategoriaClick = (categoria: string) => {
+        setHorariosPorCategoria((prevHorariosPorCategoria) => ({
+            ...prevHorariosPorCategoria,
+            [categoria]: !prevHorariosPorCategoria[categoria],
+        }));
     };
 
     return (
@@ -122,34 +124,24 @@ function Contatos() {
                 <br />
             </ul>
             <Title level={3}>Nossos Horários</Title>
-            <Button onClick={alternarTabela} style={{ marginBottom: 16 }}>
-                {mostrarTabelaNoite
-                    ? 'Mostrar Horários do Dia'
-                    : 'Mostrar Horários da Noite'}
-            </Button>
-            {mostrarTabelaNoite ? (
-                <>
-                    <Title level={4}>Turno da Noite</Title>
-                    <Collapse defaultActiveKey={['1']}>
-                        {/* Use o componente Collapse.Panel para cada horário */}
-                        {horariosNoiteDataSource.map((item) => (
-                            <Panel header={item.categoria} key={item.key}>
-                                <Table
-                                    dataSource={[item]}
-                                    columns={horariosColumns}
-                                    pagination={false}
-                                />
-                            </Panel>
-                        ))}
-                    </Collapse>
-                </>
-            ) : (
-                <Table
-                    dataSource={horariosDataSource}
-                    columns={horariosColumns}
-                    pagination={false}
-                />
-            )}
+            <Collapse>
+                {categorias.map((categoria) => (
+                    <Panel
+                        header={categoria}
+                        key={categoria}
+                    
+                    >
+                        <Table
+                            dataSource={horariosDataSource.filter(
+                                (item) => item.categoria === categoria
+                            )}
+                            columns={horariosColumns}
+                            pagination={false}
+                            bordered={false}
+                        />
+                    </Panel>
+                ))}
+            </Collapse>
         </div>
     );
 }
