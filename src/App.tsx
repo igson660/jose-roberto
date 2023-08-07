@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Breadcrumb, Layout, Menu, theme, Typography } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Breadcrumb, Layout, Menu, theme, Typography, Drawer, Button } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 import logo from './assets/logov2.png';
 import About from './components/about/About';
 import { Titulos } from './components/titulos/Titulos';
@@ -10,10 +11,32 @@ const { Link } = Typography;
 
 function App() {
     const [state, setState] = useState('Sobre');
+    const [drawerVisible, setDrawerVisible] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const {
         token: { colorBgContainer },
     } = theme.useToken();
     
+    const handleMenuClick = ({ key }: { key: React.Key }) => {
+        setState(key.toString());
+        setDrawerVisible(false);
+    };
+
+    const toggleDrawer = () => {
+        setDrawerVisible(!drawerVisible);
+    };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <Layout className="layout">
@@ -35,27 +58,51 @@ function App() {
                         />
                     </picture>
                 </div>
-                <Menu
-                    style={{ alignItems: 'end' }}
-                    theme="dark"
-                    mode="horizontal"
-                    defaultSelectedKeys={['1']}
-                    onClick={({ domEvent: { target } }) =>
-                        // @ts-ignore
-                        setState(target.innerText)
-                    }
-                    items={['Sobre', 'Títulos', 'Contato'].map(
-                        (item, index) => ({
-                            key: index + 1,
-                            label: `${item}`,
-                        })
-                    )}
-                />
+                {isMobile ? (
+                    <Button
+                        className="menu-button"
+                        type="primary"
+                        onClick={toggleDrawer}
+                        icon={<MenuOutlined />}
+                        style={{ position: 'absolute', top: 15, right: 10 }}
+                    />
+                ) : (
+                    <Menu
+                        style={{ alignItems: 'end' }}
+                        theme="dark"
+                        mode="horizontal"
+                        defaultSelectedKeys={['1']}
+                        onClick={handleMenuClick}
+                        items={['Sobre', 'Títulos', 'Informações'].map(
+                            (item: string, index: number) => ({
+                                key: `${index + 1}`,
+                                label: `${item}`,
+                            })
+                        )}
+                    />
+                )}
             </Header>
+            {isMobile && (
+                <Drawer
+                    title="Menu"
+                    placement="left"
+                    onClose={toggleDrawer}
+                    visible={drawerVisible}
+                    bodyStyle={{ padding: 0 }}
+                >
+                    <Menu
+                        theme="dark"
+                        mode="vertical"
+                        defaultSelectedKeys={['Sobre']}
+                        onClick={handleMenuClick}
+                    >
+                        <Menu.Item key="Sobre">Sobre</Menu.Item>
+                        <Menu.Item key="Títulos">Títulos</Menu.Item>
+                        <Menu.Item key="Informações">Informações</Menu.Item>
+                    </Menu>
+                </Drawer>
+            )}
             <Content className="app-content">
-                {/* <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>{state}</Breadcrumb.Item>
-                </Breadcrumb> */}
                 <div>{state === 'Sobre' ? <About /> : state === 'Títulos' ? <Titulos/> : <Contatos/>}</div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>
